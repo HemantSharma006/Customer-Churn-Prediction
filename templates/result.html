@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChurnAI | Customer Churn Analysis</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="result-page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <div class="top-nav">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    ChurnAI
+                </div>
+
+                <div class="brand-subtitle">
+                    Customer Intelligence
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-status">
+
+            <span class="status-dot"></span>
+
+            AI Analysis Complete
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HERO SECTION
+    ====================================================== -->
+
+    <div class="prediction-complete">
+
+        ✨ PREDICTION COMPLETE
+
+    </div>
+
+
+    <div class="hero">
+
+        <div>
+
+            <h1>
+
+                Customer Churn
+
+                <span>
+                    Analysis
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Your customer profile has been analyzed using the
+                trained machine learning model.
+
+            </p>
+
+        </div>
+
+
+        <a href="/" class="new-analysis">
+
+            + New Analysis
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MAIN RESULT GRID
+    ====================================================== -->
+
+    <div class="result-grid">
+
+
+        <!-- =================================================
+             PREDICTION RESULT CARD
+        ================================================== -->
+
+        <div class="prediction-card {{ risk_class }}">
+
+
+            <div class="section-label">
+
+                PREDICTION RESULT
+
+            </div>
+
+
+            <div class="result-header">
+
+
+                <div>
+
+                    <h2>
+                        {{ result }}
+                    </h2>
+
+
+                    <p class="result-message">
+
+                        {{ message }}
+
+                    </p>
+
+                </div>
+
+
+                <!-- Dynamic Risk Icon -->
+
+                <div class="risk-icon {{ risk_class }}">
+
+                    {% if risk_class == "high" %}
+
+                        ⚠
+
+                    {% elif risk_class == "medium" %}
+
+                        !
+
+                    {% else %}
+
+                        ✓
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CHURN PROBABILITY
+            ================================================== -->
+
+            <div class="probability-section">
+
+
+                <div class="probability-top">
+
+
+                    <span class="probability-label">
+
+                        Estimated Churn Probability
+
+                    </span>
+
+
+                    <span class="probability-value">
+
+                        {{ probability }}%
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-bar {{ risk_class }}"
+                        style="width: {{ probability }}%;">
+                    </div>
+
+                </div>
+
+
+
+                <div class="scale">
+
+                    <span>
+                        Low
+                    </span>
+
+                    <span>
+                        Medium
+                    </span>
+
+                    <span>
+                        High
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 OVERALL RISK
+            ================================================== -->
+
+            <div class="risk-row">
+
+
+                <span>
+                    Overall Risk
+                </span>
+
+
+                <span class="risk-badge {{ risk_class }}">
+
+                    • {{ risk_label }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             MODEL INFORMATION CARD
+        ================================================== -->
+
+        <div class="model-card">
+
+
+            <div class="section-label">
+
+                MODEL INFORMATION
+
+            </div>
+
+
+            <div class="model-icon">
+
+                ◎
+
+            </div>
+
+
+            <h3>
+
+                Logistic Regression
+
+            </h3>
+
+
+            <p class="model-description">
+
+                Binary classification model trained to predict
+                customer churn probability.
+
+            </p>
+
+
+
+            <!-- Model Accuracy -->
+
+            <div class="model-stat">
+
+                <span>
+                    Model Accuracy
+                </span>
+
+                <strong>
+                    80.5%
+                </strong>
+
+            </div>
+
+
+
+            <!-- Training Records -->
+
+            <div class="model-stat">
+
+                <span>
+                    Training Records
+                </span>
+
+                <strong>
+                    7,032
+                </strong>
+
+            </div>
+
+
+
+            <!-- Features -->
+
+            <div class="model-stat">
+
+                <span>
+                    Features
+                </span>
+
+                <strong>
+                    19
+                </strong>
+
+            </div>
+
+
+
+            <!-- Prediction Type -->
+
+            <div class="model-stat">
+
+                <span>
+                    Prediction Type
+                </span>
+
+                <strong>
+                    Binary
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOWER SECTION
+    ====================================================== -->
+
+    <div class="lower-grid">
+
+
+        <!-- =================================================
+             KEY PREDICTION FACTORS
+        ================================================== -->
+
+        <div class="factors-card">
+
+
+            <div class="card-kicker">
+
+                CUSTOMER ANALYSIS
+
+            </div>
+
+
+            <h2 class="card-title">
+
+                Key Prediction Factors
+
+            </h2>
+
+
+            <p class="card-description">
+
+                Important customer attributes considered in
+                the analysis.
+
+            </p>
+
+
+
+            <!-- Dynamic Factors -->
+
+            <div class="factors">
+
+                {% for factor in factors %}
+
+                <div class="factor">
+
+
+                    <div class="factor-icon {{ factor.type }}">
+
+                        {{ factor.icon }}
+
+                    </div>
+
+
+                    <div class="factor-text">
+
+
+                        <strong>
+
+                            {{ factor.title }}
+
+                        </strong>
+
+
+                        <span>
+
+                            {{ factor.description }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AI RECOMMENDATION
+        ================================================== -->
+
+        <div class="recommendation-card">
+
+
+            <div class="recommendation-icon">
+
+                💡
+
+            </div>
+
+
+            <div class="card-kicker">
+
+                AI RECOMMENDATION
+
+            </div>
+
+
+            <h3>
+
+                Recommended Action
+
+            </h3>
+
+
+            <p>
+
+                {{ recommendation }}
+
+            </p>
+
+
+            <div class="recommendation-action">
+
+                {{ recommendation_action }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BOTTOM SUMMARY BAR
+    ====================================================== -->
+
+    <div class="bottom-bar">
+
+
+        <div class="engine-info">
+
+
+            <!-- Prediction Engine -->
+
+            <div class="engine-item">
+
+
+                <div class="engine-icon">
+
+                    AI
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Prediction Engine
+                    </small>
+
+                    <strong>
+                        Machine Learning
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Churn Probability -->
+
+            <div class="engine-item">
+
+
+                <div class="engine-icon">
+
+                    %
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Churn Probability
+                    </small>
+
+                    <strong>
+                        {{ probability }}%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Analysis Status -->
+
+            <div class="engine-item">
+
+
+                <div class="engine-icon">
+
+                    ✓
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Analysis Status
+                    </small>
+
+                    <strong>
+                        Complete
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Analyze Again -->
+
+        <a href="/" class="analyze-again">
+
+            ← Analyze Another Customer
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="footer">
+
+
+        <span>
+
+            ChurnAI • Customer Retention Intelligence
+
+        </span>
+
+
+        <span>
+
+            Powered by Machine Learning
+
+        </span>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
