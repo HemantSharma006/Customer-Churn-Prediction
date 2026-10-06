@@ -106,3 +106,54 @@ Customer-Churn-Prediction/
 ├── README.md
 ├── requirements.txt
 └── train_model.py
+---
+
+---
+
+## 📸 Screenshots
+
+### 🖥️ Home Page
+
+The main dashboard allows users to enter customer information and submit it for churn prediction.
+
+![Home Page](screenshots/01-home-page.jpg)
+
+---
+
+### 🔴 High-Risk Customer
+
+Example prediction showing a high churn probability of 82.43%.
+
+![High Risk Result](screenshots/02-high-risk-result.jpg)
+
+---
+
+### 🟡 Medium-Risk Customer
+
+Example prediction showing a moderate churn probability of 54.72%.
+
+![Medium Risk Result](screenshots/03-medium-risk-result.jpg)
+
+---
+
+### 🟢 Low-Risk Customer
+
+Example prediction showing a low churn probability of 24.38%.
+
+![Low Risk Result](screenshots/04-low-risk-result.jpg)
+
+---
+
+### 🔍 Key Prediction Factors
+
+The application highlights important customer attributes considered during the analysis and provides an AI-based recommendation.
+
+![Key Prediction Factors](screenshots/05-key-prediction-factors.jpg)
+
+---
+
+### 📁 Project Structure
+
+The project is organized into separate folders for the dataset, trained model, frontend assets, templates, and application code.
+
+![Project Structure](screenshots/06-project-structure.jpg)
