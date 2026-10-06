@@ -2,7 +2,7 @@
 
 A machine learning-based web application that predicts whether a customer is likely to churn and provides an estimated churn probability, risk level, key prediction factors, and recommended retention action.
 
-The project was developed as part of an Artificial Intelligence internship and demonstrates the complete workflow from data preprocessing and model training to web-based prediction.
+This project was developed as part of an Artificial Intelligence internship and demonstrates an end-to-end workflow from data preprocessing and model training to web-based customer churn prediction.
 
 ---
 
@@ -26,7 +26,7 @@ The trained model is integrated into a Flask web application where users can ent
 - Identify important customer attributes associated with the prediction.
 - Provide an AI-based recommendation for customer retention.
 - Compare different machine learning classification models.
-- Deploy the trained model inside a web application.
+- Integrate the trained model into a web application.
 
 ---
 
@@ -37,31 +37,30 @@ The trained model is integrated into a Flask web application where users can ent
 - Data cleaning and preprocessing
 - Numerical feature scaling
 - Categorical feature encoding
-- Train-test split with stratification
+- Stratified train-test split
 - Logistic Regression
 - Random Forest Classifier
 - Model performance comparison
 - Automatic selection of the model with the better F1-score
-- Saved trained model using Joblib
+- Model serialization using Joblib
 
 ### Web Application
 
 - Modern dark-themed user interface
 - Customer information input form
-- Real-time churn prediction
-- Churn probability percentage
-- Risk classification
+- Churn probability prediction
+- Low, Medium, and High risk classification
 - Key prediction factors
 - AI-based retention recommendation
 - Responsive design
-- Can be accessed from other devices on the same local network
+- Local network access from other devices
 
 ---
 
 ## 🛠️ Technology Stack
 
 | Technology | Purpose |
-|------------|---------|
+|---|---|
 | Python | Programming language |
 | Pandas | Data processing |
 | NumPy | Numerical operations |
@@ -76,84 +75,55 @@ The trained model is integrated into a Flask web application where users can ent
 
 ---
 
-## 📂 Project Structure
+## 📊 Dataset
+
+The project uses the IBM Telco Customer Churn dataset.
+
+The dataset contains customer information including:
+
+- Gender
+- Senior Citizen status
+- Partner
+- Dependents
+- Tenure
+- Phone Service
+- Multiple Lines
+- Internet Service
+- Online Security
+- Online Backup
+- Device Protection
+- Technical Support
+- Streaming TV
+- Streaming Movies
+- Contract
+- Paperless Billing
+- Payment Method
+- Monthly Charges
+- Total Charges
+- Churn
+
+The `customerID` column is removed during preprocessing because it is an identifier and does not provide useful predictive information.
+
+---
+
+## 🧹 Data Preprocessing
+
+The following preprocessing steps are performed:
+
+### 1. Convert Total Charges
+
+The `TotalCharges` column is converted from text to numeric values.
+
+Invalid values are converted to missing values and the corresponding rows are removed.
+
+### 2. Remove Customer ID
+
+The `customerID` column is removed because it is only an identifier.
+
+### 3. Convert Target Variable
+
+The `Churn` column is converted into binary values:
 
 ```text
-Customer-Churn-Prediction/
-│
-├── dataset/
-│   └── customer_churn.csv
-│
-├── model/
-│   └── churn_model.pkl
-│
-├── screenshots/
-│
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       └── script.js
-│
-├── templates/
-│   ├── index.html
-│   └── result.html
-│
-├── venv/
-│
-├── .gitignore
-├── app.py
-├── README.md
-├── requirements.txt
-└── train_model.py
----
-
----
-
-## 📸 Screenshots
-
-### 🖥️ Home Page
-
-The main dashboard allows users to enter customer information and submit it for churn prediction.
-
-![Home Page](screenshots/01-home-page.jpg)
-
----
-
-### 🔴 High-Risk Customer
-
-Example prediction showing a high churn probability of 82.43%.
-
-![High Risk Result](screenshots/02-high-risk-result.jpg)
-
----
-
-### 🟡 Medium-Risk Customer
-
-Example prediction showing a moderate churn probability of 54.72%.
-
-![Medium Risk Result](screenshots/03-medium-risk-result.jpg)
-
----
-
-### 🟢 Low-Risk Customer
-
-Example prediction showing a low churn probability of 24.38%.
-
-![Low Risk Result](screenshots/04-low-risk-result.jpg)
-
----
-
-### 🔍 Key Prediction Factors
-
-The application highlights important customer attributes considered during the analysis and provides an AI-based recommendation.
-
-![Key Prediction Factors](screenshots/05-key-prediction-factors.jpg)
-
----
-
-### 📁 Project Structure
-
-The project is organized into separate folders for the dataset, trained model, frontend assets, templates, and application code.
-
-![Project Structure](screenshots/06-project-structure.jpg)
+No  → 0
+Yes → 1
